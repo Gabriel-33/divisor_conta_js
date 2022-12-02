@@ -57,21 +57,33 @@ ul li a:hover{
 #menu-sidebar{
 	background-color: rgb(255,100,0);
 }
-#dividir_conta #div_conta_formulario{
-/*	height: 10px;*/
-/*	font-size: 30px;*/
-/*	width: 10%;*/
-}
+#dividir_conta #div_conta_formulario #comida_nome{
+		margin-top: 5px;
+		align-items: center;
+		width:20%;
+		height: 40px;
+	}
 #dividir_conta #div_conta_formulario input[type="checkbox"],#cliente_comida{
-	height: 60px;
+/*	height: 60px;*/
 /*	font-size: 30px;*/
-/*	width: 10%;*/
+	width: 30px;
 }
 #dividir_conta #div_conta_formulario{
 /*	width:25%!important;*/
 /*	color: red;*/
 }
-@media screen and (max-width:1200px){
+@media screen and (max-width:1280px){
+	#dividir_conta #div_conta_formulario #comida_nome{
+/*		color: red;*/
+		margin-top: 5px;
+		align-items: center;
+		width:20%;
+		height: 60px;
+	}
+	#dividir_conta #div_conta_formulario input[type="checkbox"]{
+		width: 10%;
+/*		margin-top: 50px;*/
+	}
 	#page{
 		height: 100%;
 		display: grid;
@@ -112,6 +124,22 @@ ul li a:hover{
 	}
 }
 @media screen and (max-width:580px){
+	#dividir_conta #div_conta_formulario{
+		width: auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	#dividir_conta #div_conta_formulario #comida_nome{
+		 align-items: center;
+		 color: red;
+		 margin-top: 5px;
+		 width: auto;
+	}
+	#dividir_conta #div_conta_formulario input[type="checkbox"]{
+		 flex: none;
+		 margin-top: 10px;
+	}
 	#page{
 		display: grid;
 	  gap: 1%;
@@ -136,6 +164,19 @@ ul li a:hover{
 	}
 }
 @media screen and (max-width:380px){
+	#dividir_conta #div_conta_formulario{
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	#dividir_conta #div_conta_formulario #comida_nome{
+/*		 align-items: center;*/
+		 color: red;
+	}
+	#dividir_conta #div_conta_formulario input[type="checkbox"]{
+		 flex: none;
+	}
 	#page{
 		display: grid;
 	  gap: 1%;

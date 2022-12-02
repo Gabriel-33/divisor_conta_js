@@ -39,13 +39,13 @@ function montar_formulario(div_conteudo_elementos){
 	div_conteudo_conta.id = "div_conta_formulario";
 	for(var i = 0; i < comida.nome.length; i++){
 		// console.log(comida.nome[i])
-		let comida_nome_formatado = comida.nome[i]+comida.preco[i]+"(R$):";
+		let comida_nome_formatado = comida.nome[i]+" "+comida.preco[i]+"(R$):";
 		let criar_label = document.createElement("label");
 		let texto_label = document.createTextNode(comida_nome_formatado);
-		texto_label.id = "comida_nome";
-		criar_label.style.display = "inline-block"
-       	criar_label.style.width = "20%"
-       	criar_label.style.align = "start"
+		criar_label.id = "comida_nome";
+		// criar_label.style.display = "inline-block"
+       	// criar_label.style.width = "20%"
+       	// criar_label.style.align = "start"
 		let criar_quebra_linha = document.createElement("br")
 		criar_label.setAttribute("for","label");
 		criar_label.appendChild(texto_label);	
@@ -55,6 +55,7 @@ function montar_formulario(div_conteudo_elementos){
 			let criar_checkbox_nome_cliente = document.createElement("input");
 			let criar_label_cliente = document.createElement("label");
 			let criar_texto_label_cliente = document.createTextNode(cliente_nome);
+			criar_label_cliente.id = "label_nome_cliente";
 			criar_checkbox_nome_cliente.type = "checkbox";
 			// criar_checkbox_nome_cliente.class = "form-check-input";
 			criar_checkbox_nome_cliente.name = cliente_nome;
