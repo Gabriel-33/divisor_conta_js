@@ -6,7 +6,7 @@ alterar_classe_div_conteudo = (elemento) =>{
 			montar_conta_formulario();
 			break;
 		case 'guia_aplicacao':
-			pegar_div_conteudo_bootstrap.className = "col-md-11 col-xs-12 col-sm-12 mx-auto";
+			pegar_div_conteudo_bootstrap.className = "col-md-10 col-xs-12 col-sm-12 mx-auto";
 			break;
 		default:
 			pegar_div_conteudo_bootstrap.className = "col-md-8 col-xs-12 col-sm-8 mx-auto";
@@ -52,9 +52,9 @@ const comida = {
 	preco_dividido:[],
 };
 retornar_msg_usuario = (div,texto,tipoMsg,tempo) => {
-	var div_msg = document.querySelector(`#${div} #retornar_msg`);
-	var div_texto = document.querySelector(`#${div} #retornar_msg #texto`);
-	div_msg.style.display = "block";
+	var div_msg = document.querySelector(`#retornar_msg`);
+	var div_texto = document.querySelector(`#retornar_msg #texto`);
+	div_msg.style.visibility = "visible";
 	div_texto.textContent = texto;
 	switch(tipoMsg){
 		case "success":
@@ -70,7 +70,7 @@ retornar_msg_usuario = (div,texto,tipoMsg,tempo) => {
 			break;
 	}
 	setTimeout(()=>{
-		div_msg.style.display = "none";
+		div_msg.style.visibility = "hidden";
 	},tempo)
 };
 function adicionar_cliente(){
