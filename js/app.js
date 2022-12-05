@@ -51,10 +51,10 @@ function chamar_elemento_pagina(e,elemento){
 	marcar_guia_selecionada(elemento);
 }
 let atualizar_form_conta = 1;
-const cliente = ['pedro','gabriel','joão','marcos','lucas','gabriel1','joão1','marcos1','pedr2o','gabriel2','j2oão','ma2rcos'];
+const cliente = [];
 const comida = {
-	nome:['pizza','açai','refri','bolo'],
-	preco:[42,8,12,15],
+	nome:[],
+	preco:[],
 	preco_dividido:[],
 };
 retornar_msg_usuario = (div,texto,tipoMsg,tempo) => {
