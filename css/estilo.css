@@ -31,6 +31,7 @@ body{
   padding: 20px 20px;
 }
 #conteudo{
+/*	width: 98%;*/
 	display: grid;
 	align-items: center;
 /*	justify-content: center;*/
@@ -114,13 +115,14 @@ ul li a:hover{
 	}*/
 	ul li{
 		display: grid;
-		margin-top: 30px;
+		margin-top: 35px;
 		float: right;
+		align-items: center;
 	}
   ul li a{
 		color:black;
 		font-size: 15px;
-		font-family: "verdana";
+		font-family: "verdana" sans-serif;
 		padding: 5px;
 	}
 }
