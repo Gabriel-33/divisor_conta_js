@@ -20,7 +20,7 @@ body{
 	grid-template-columns:  repeat(5, 150px);
   grid-template-rows: repeat(5, 100px);
   gap: 1%;
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: rgba(0, 0, 0, 0.07);
 	/*  padding: 10px;*/
    grid-template-areas:
     'menu conteudo';
@@ -52,7 +52,7 @@ ul li a{
 	font-family: "verdana";
 }
 ul li a:hover{
-	color: white;
+	color: white!important;
 }
 #menu-sidebar{
 	background-color: rgb(255,100,0);

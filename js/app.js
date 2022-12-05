@@ -1,5 +1,36 @@
+alterar_classe_div_conteudo = (elemento) =>{
+	let pegar_div_conteudo_bootstrap = document.getElementById("div_conteudo");
+	switch(elemento){
+		case 'dividir_conta':
+			pegar_div_conteudo_bootstrap.className = "col-md-8 col-xs-8 col-sm-8 mx-auto";
+			montar_conta_formulario();
+			break;
+		case 'guia_aplicacao':
+			pegar_div_conteudo_bootstrap.className = "col-md-12 col-xs-12 col-sm-12 mx-auto";
+			break;
+		default:
+			pegar_div_conteudo_bootstrap.className = "col-md-8 col-xs-8 col-sm-8 mx-auto";
+			break;
+	}
+};
+marcar_guia_selecionada = (elemento) =>{
+	let elemento_marcar = document.querySelector(`#menu-sidebar #${elemento}`);
+	let elementos_nao_marcar = document.querySelectorAll(`#menu-sidebar ul li > a:not(#${elemento})`);
+	elemento_marcar.style.color = "white";
+	for(link_nao_marcar of elementos_nao_marcar){
+		link_nao_marcar.style.color = "black";
+	}
+	if(elemento == "dividir_conta"){
+		let checar_clientes_preenchidos = document.querySelectorAll("#dividir_conta input[type=checkbox]");
+		let msg_dividir_conta_div = document.getElementById("guia_dividir_conta");
+		if(checar_clientes_preenchidos.length!=0){
+			msg_dividir_conta_div.style.display = "none";
+		}
+	}
+};
 function chamar_elemento_pagina(e,elemento){
 	e.preventDefault();
+	let guia_selecionada = elemento; 
 	let mostrar_elemento = document.querySelector(`#conteudo_elementos #${elemento}`);	
 	let esconder_elementos = document.querySelectorAll(`#conteudo_elementos > div:not(#${elemento})`);
 	mostrar_elemento.style.display = "block";
@@ -8,31 +39,69 @@ function chamar_elemento_pagina(e,elemento){
 		elementos.style.display = "none";
 	}
 	if(elemento == "dividir_conta"){
-		montar_conta_formulario();
+		montar_conta_formulario(elemento);
 	}
+	alterar_classe_div_conteudo(elemento);
+	marcar_guia_selecionada(elemento);
 }
 let atualizar_form_conta = 1;
-const cliente = ['pedro','gabriel','Davi','marcos'];
+const cliente = [];
 const comida = {
-	nome:['pizza','açai','refrigerante'],
-	preco:[42,12,8],
+	nome:[],
+	preco:[],
 	preco_dividido:[],
+};
+retornar_msg_usuario = (div,texto,tipoMsg,tempo) => {
+	var div_msg = document.querySelector(`#${div} #retornar_msg`);
+	var div_texto = document.querySelector(`#${div} #retornar_msg #texto`);
+	div_msg.style.display = "block";
+	div_texto.textContent = texto;
+	switch(tipoMsg){
+		case "success":
+			div_msg.className = "alert alert-success";
+			break;
+		case "warning":
+			div_msg.className = "alert alert-warning";
+			break;
+		case "danger":
+			div_msg.className = "alert alert-danger";
+			break;
+		default:
+			break;
+	}
+	setTimeout(()=>{
+		div_msg.style.display = "none";
+	},tempo)
 };
 function adicionar_cliente(){
 	let cliente_nome = document.getElementById("nome_cliente");
-	cliente.push(cliente_nome.value);
-	cliente_nome.value = "";
-	// console.log(cliente);
-	atualizar_form_conta = 1;
+	if(cliente_nome.value!=""){
+		cliente.push(cliente_nome.value);
+		cliente_nome.value = "";
+		atualizar_form_conta = 1;
+		retornar_msg_usuario("adicionar_cliente","Cliente adicionado à mesa com sucesso!","success",1500);
+	}else{
+		retornar_msg_usuario("adicionar_cliente","Campo vázio. Preencha o campo!","warning",2500);
+	}
 }
 function adicionar_comida(){
 	let nome_comida = document.getElementById("nome_comida");
 	let preco_comida = document.getElementById("preço_comida");
-	comida['nome'].push(nome_comida.value);
-	comida['preco'].push(preco_comida.value);
-	nome_comida.value = "";
-	preco_comida.value = "";
-	// console.log(comida)
+	if(nome_comida.value!="" && preco_comida.value!=""){
+		comida['nome'].push(nome_comida.value);
+		comida['preco'].push(preco_comida.value);
+		nome_comida.value = "";
+		preco_comida.value = "";
+		retornar_msg_usuario("adicionar_comida","Comida adicionada à conta com sucesso!","success",1700);
+	}else{
+		if (nome_comida.value == "" && preco_comida.value!="") {
+			retornar_msg_usuario("adicionar_comida","Campo Comida vázio. Preencha o campo comida!","warning",2500);
+		}else if(nome_comida.value!= "" && preco_comida.value == ""){
+			retornar_msg_usuario("adicionar_comida","Campo Preço vázio. Preencha o campo comida!","warning",2500);
+		}else{
+			retornar_msg_usuario("adicionar_comida","Campos vázios. Preencha os campos!","warning",3500);
+		}
+	}
 }
 function montar_formulario(div_conteudo_elementos){
 	const div_conteudo_conta = document.createElement("div");

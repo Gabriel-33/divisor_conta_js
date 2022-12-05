@@ -13,6 +13,9 @@
 	<div id="menu-sidebar">
 		<ul>
 			<li>
+				<a href="#" id="guia_aplicacao" onclick="chamar_elemento_pagina(event,'guia_aplicacao')">Guia</a>
+			</li>
+			<li>
 				<a href="#" id="adicionar_cliente" onclick="chamar_elemento_pagina(event,'adicionar_cliente')">Adicionar cliente</a>
 			</li>
 			<li>
@@ -26,13 +29,18 @@
 	<div id="conteudo">
 		<div class="containter">
 			<div class="row">
-				<div class="col-md-8 col-xs-12 col-sm-12 mx-auto">
+				<div id="div_conteudo">
 					<div id="card">
 					  	<div class="card">
 						  <div class="card-body">
 						  	<div id="conteudo_elementos">
-						  		<div id="guia_aplicacao">Guia</div>
+						  		<div id="guia_aplicacao" style="width:100%;height: 100%;">
+						  			<img src="img/guia_aplicacao.gif" style="width:100%;height:100%;position:realative">
+						  		</div>
 						  		<div id="adicionar_cliente" style="display:none;">
+						  			<div id="retornar_msg" style="display:none;text-align: center;justify-content: center;">
+										<p id="texto"></p>
+									</div>
 								    <form>
 										<div class="mb-3">
 											<label for="nome_cliente" class="form-label">Cliente</label>
@@ -44,6 +52,9 @@
 									</form>
 								</div>
 								<div id="adicionar_comida" style="display:none;">
+									<div id="retornar_msg" style="display:none;text-align: center;justify-content: center;">
+										<p id="texto"></p>
+									</div>
 									<form>
 										<div class="mb-3">
 											<label for="nome_comida" class="form-label">Comida</label>
@@ -59,6 +70,9 @@
 									</form>
 								</div>
 								<div id="dividir_conta" style="display:none">
+									<div id="guia_dividir_conta">
+										<p class="alert alert-warning">Antes de dividir a conta,insira os cliente e as os pedidos dos mesmos!</p>
+									</div>
 									<div class="d-grid gap-2">
 									  <button class="btn btn-primary" type="button" onclick="dividir_conta()">Calcular</button>
 									</div>
