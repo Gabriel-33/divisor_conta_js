@@ -2,14 +2,14 @@ alterar_classe_div_conteudo = (elemento) =>{
 	let pegar_div_conteudo_bootstrap = document.getElementById("div_conteudo");
 	switch(elemento){
 		case 'dividir_conta':
-			pegar_div_conteudo_bootstrap.className = "col-md-8 col-xs-8 col-sm-8 mx-auto";
+			pegar_div_conteudo_bootstrap.className = "col-md-8 col-xs-12 col-sm-8 mx-auto";
 			montar_conta_formulario();
 			break;
 		case 'guia_aplicacao':
 			pegar_div_conteudo_bootstrap.className = "col-md-12 col-xs-12 col-sm-12 mx-auto";
 			break;
 		default:
-			pegar_div_conteudo_bootstrap.className = "col-md-8 col-xs-8 col-sm-8 mx-auto";
+			pegar_div_conteudo_bootstrap.className = "col-md-8 col-xs-12 col-sm-8 mx-auto";
 			break;
 	}
 };
