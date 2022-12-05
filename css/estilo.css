@@ -1,11 +1,12 @@
 *{
 	margin:0;
 	padding: 0;
-	box-sizing: border-box;
-/*	width: 100%;*/
+	box-sizing: content-box;
+/*	height: 100%;*/
 }
 html{
 	height: 100%;
+	background-color: rgba(0, 0, 0, 0.03);
 }
 body{
 	height: 100%;
@@ -59,16 +60,36 @@ ul li a:hover{
 #menu-sidebar{
 	background-color: rgb(255,100,0);
 }
+#dividir_conta{
+	display: inline-grid;
+  height: auto;
+  box-sizing: content-box;
+}
 #dividir_conta #div_conta_formulario #comida_nome{
-		margin-top: 5px;
-		align-items: center;
-		width:20%;
-		height: 40px;
+	display: inline-grid;
+	height: 50px;
+	width: 10%;
+}
+#dividir_conta #div_conta_formulario #cliente_comida{
+	display: inline-grid;
+	margin-left: 20px;		
+	width: 10px;
+	grid-column: 2;
+	color: red!important;
+	width: 20px;
+}
+#dividir_conta #div_label_conta{
+	display: inline-grid;
+	text-align: center;
+}
+#dividir_conta #div_label_conta label{
+		display: inline-grid;
+		text-align: justify;
+		width: 10%;
+		margin-top: 10px;
+		margin-left: 0px;
 	}
-#dividir_conta #div_conta_formulario input[type="checkbox"],#cliente_comida{
-/*	height: 60px;*/
-/*	font-size: 30px;*/
-	width: 30px;
+#dividir_conta input[type="checkbox"]{
 }
 #dividir_conta #div_conta_formulario{
 /*	width:25%!important;*/
@@ -78,7 +99,7 @@ ul li a:hover{
 	#dividir_conta #div_conta_formulario #comida_nome{
 /*		color: red;*/
 		margin-top: 5px;
-		align-items: center;
+		align-items: start;
 		width:20%;
 		height: 60px;
 	}
@@ -95,6 +116,13 @@ ul li a:hover{
 		'menu conteudo conteudo conteudo conteudo conteudo conteudo';
 		grid-template-columns: 20% auto;
 		grid-template-rows: 100%;
+	}
+	#dividir_conta #div_label_conta label{
+		display: inline-grid;
+		text-align: justify;
+		width: 10%;
+		margin-top: 10px;
+		margin-left: 0px;
 	}
 }
 @media screen and (max-width:830px){
@@ -125,6 +153,13 @@ ul li a:hover{
 		font-family: "verdana" sans-serif;
 		padding: 5px;
 	}
+	#dividir_conta #div_label_conta label{
+		display: inline-grid;
+		text-align: justify;
+		width: 10%;
+		margin-top: 10px;
+		margin-left: 0px;
+	}
 }
 @media screen and (max-width:580px){
 	#dividir_conta #div_conta_formulario{
@@ -154,6 +189,13 @@ ul li a:hover{
 	    grid-template-columns: auto auto auto;
 	   	grid-template-rows: 15% 84%;
 	}
+	#dividir_conta #div_label_conta label{
+		display: inline-grid;
+		text-align: center;
+		width: 50%;
+		margin-top: 10px;
+		margin-left: 15px;
+	}
 	ul li{
 		display: grid;
 		margin-top: 35px;
@@ -167,6 +209,58 @@ ul li a:hover{
 	}
 }
 @media screen and (max-width:380px){
+	#page{
+		display: grid;
+	  gap: 1%;
+	  height: 100%;
+	  background-color: rgba(0, 0, 0, 0.03);
+		/*  padding: 10px;*/
+	   grid-template-areas:
+	    'menu menu menu'
+	    'conteudo conteudo conteudo';
+	    grid-template-columns: auto auto auto;
+	   	grid-template-rows: 15% 84%;
+	   	box-sizing: content-box;
+	}
+	#dividir_conta #div_conta_formulario{
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		box-sizing: content-box;
+	}
+	#dividir_conta #div_conta_formulario #comida_nome{
+		 color: red;
+		 box-sizing: content-box;
+	}
+	#dividir_conta #div_conta_formulario input[type="checkbox"]{
+		 flex: none;
+		 box-sizing: content-box;
+	}
+	#dividir_conta #div_label_conta label{
+		display: inline-grid;
+		text-align: justify;
+		width: 10%;
+		margin-top: 10px;
+		margin-left: 40px;
+	}
+	ul li{
+		display: inline-block;
+		margin-top: 17px;
+/*		align-items: center;*/
+		float: right;
+	}
+  ul li a{
+		color:black;
+		font-size: 10px;
+		font-family: "verdana";
+		padding: 5px;
+	}
+}
+@media screen and (max-width:280px){
+	#conteudo #retornar_msg{
+		height: 80px!important;
+	}
 	#dividir_conta #div_conta_formulario{
 		width: 100%;
 		display: flex;
@@ -193,7 +287,7 @@ ul li a:hover{
 	}
 	ul li{
 		display: inline-block;
-		margin-top: 17px;
+		margin-top: 10px;
 /*		align-items: center;*/
 		float: right;
 	}

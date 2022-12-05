@@ -2,11 +2,11 @@ alterar_classe_div_conteudo = (elemento) =>{
 	let pegar_div_conteudo_bootstrap = document.getElementById("div_conteudo");
 	switch(elemento){
 		case 'dividir_conta':
-			pegar_div_conteudo_bootstrap.className = "col-md-8 col-xs-12 col-sm-8 mx-auto";
+			pegar_div_conteudo_bootstrap.className = "col-md-12 col-xs-12 col-sm-12 mx-auto";
 			montar_conta_formulario();
 			break;
 		case 'guia_aplicacao':
-			pegar_div_conteudo_bootstrap.className = "col-md-11 col-xs-12 col-sm-12 mx-auto";
+			pegar_div_conteudo_bootstrap.className = "col-md-10 col-xs-12 col-sm-12 mx-auto";
 			break;
 		default:
 			pegar_div_conteudo_bootstrap.className = "col-md-8 col-xs-12 col-sm-8 mx-auto";
@@ -28,6 +28,12 @@ marcar_guia_selecionada = (elemento) =>{
 		}
 	}
 };
+limpar_campos = (div_formulario) => {
+	let div = document.querySelectorAll(`#${div_formulario} input[type='text']`);
+	for(campos of div){
+		campos.value = "";
+	}
+};
 function chamar_elemento_pagina(e,elemento){
 	e.preventDefault();
 	let guia_selecionada = elemento; 
@@ -45,16 +51,16 @@ function chamar_elemento_pagina(e,elemento){
 	marcar_guia_selecionada(elemento);
 }
 let atualizar_form_conta = 1;
-const cliente = [];
+const cliente = ['pedro','gabriel','joão','marcos','lucas','gabriel1','joão1','marcos1','pedr2o','gabriel2','j2oão','ma2rcos'];
 const comida = {
-	nome:[],
-	preco:[],
+	nome:['pizza','açai','refri','bolo'],
+	preco:[42,8,12,15],
 	preco_dividido:[],
 };
 retornar_msg_usuario = (div,texto,tipoMsg,tempo) => {
-	var div_msg = document.querySelector(`#${div} #retornar_msg`);
-	var div_texto = document.querySelector(`#${div} #retornar_msg #texto`);
-	div_msg.style.display = "block";
+	var div_msg = document.querySelector(`#retornar_msg`);
+	var div_texto = document.querySelector(`#retornar_msg #texto`);
+	div_msg.style.visibility = "visible";
 	div_texto.textContent = texto;
 	switch(tipoMsg){
 		case "success":
@@ -70,7 +76,7 @@ retornar_msg_usuario = (div,texto,tipoMsg,tempo) => {
 			break;
 	}
 	setTimeout(()=>{
-		div_msg.style.display = "none";
+		div_msg.style.visibility = "hidden";
 	},tempo)
 };
 function adicionar_cliente(){
@@ -112,9 +118,6 @@ function montar_formulario(div_conteudo_elementos){
 		let criar_label = document.createElement("label");
 		let texto_label = document.createTextNode(comida_nome_formatado);
 		criar_label.id = "comida_nome";
-		// criar_label.style.display = "inline-block"
-       	// criar_label.style.width = "20%"
-       	// criar_label.style.align = "start"
 		let criar_quebra_linha = document.createElement("br")
 		criar_label.setAttribute("for","label");
 		criar_label.appendChild(texto_label);	
@@ -126,13 +129,9 @@ function montar_formulario(div_conteudo_elementos){
 			let criar_texto_label_cliente = document.createTextNode(cliente_nome);
 			criar_label_cliente.id = "label_nome_cliente";
 			criar_checkbox_nome_cliente.type = "checkbox";
-			// criar_checkbox_nome_cliente.class = "form-check-input";
 			criar_checkbox_nome_cliente.name = cliente_nome;
 			criar_checkbox_nome_cliente.value = comida.nome[i];
-			criar_checkbox_nome_cliente.id = "cliente_comida";			
-			// criar_label_cliente.style.display = "inline-block";
-	       	// criar_label_cliente.style.width = "12%";
-	       	// criar_label_cliente.style.align = "start";
+			criar_checkbox_nome_cliente.id = "cliente_comida";
 	       	criar_label_cliente.appendChild(criar_texto_label_cliente);
 			div_conteudo_conta.appendChild(criar_checkbox_nome_cliente);
 			div_conteudo_conta.appendChild(criar_label_cliente);
@@ -163,15 +162,17 @@ function montar_conta_formulario(){
 function mostrar_conta_dividida_div(resultado,cliente){
 	const div_conta = document.querySelector("#conteudo_elementos #dividir_conta");
 	let div_label_conta = document.createElement("div");
+	div_label_conta.id = "div_label_conta";
 	let label_cliente_resultado = document.createElement("label");
 	label_cliente_resultado.id = "label_cliente_resultado";
 	let valor_label_cliente_resultado = document.createTextNode(cliente+": "+resultado+"R$");
 	label_cliente_resultado.appendChild(valor_label_cliente_resultado);
-	label_cliente_resultado.style.width = "20%";
-	label_cliente_resultado.style.marginRight = "10px";
+	// label_cliente_resultado.style.width = "20%";
+	// label_cliente_resultado.style.marginRight = "10px";
 	// label_cliente_resultado.style.justifyContent = "center";
 	label_cliente_resultado.appendChild(valor_label_cliente_resultado);
-	div_conta.appendChild(label_cliente_resultado);
+	div_label_conta.appendChild(label_cliente_resultado);
+	div_conta.appendChild(div_label_conta);
 }
 function dividir_conta(){
 	atualizar_element_conta();
