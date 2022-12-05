@@ -30,56 +30,54 @@
 		<div class="containter">
 			<div class="row">
 				<div id="div_conteudo">
-					<div id="card">
-					  	<div class="card">
-						  <div class="card-body">
-						  	<div id="conteudo_elementos">
-						  		<div id="guia_aplicacao" style="width:100%;height: 100%;">
-						  			<img src="img/guia_aplicacao.gif" style="width:100%;height:100%;position:realative">
-						  		</div>
-						  		<div id="adicionar_cliente" style="display:none;">
-						  			<div id="retornar_msg" style="display:none;text-align: center;justify-content: center;">
-										<p id="texto"></p>
-									</div>
-								    <form>
-										<div class="mb-3">
-											<label for="nome_cliente" class="form-label">Cliente</label>
-											<input type="text" class="form-control" id="nome_cliente" aria-describedby="nome_clienteHelp" placeholder="nome do cliente...">
-										</div>
-										<div class="d-grid gap-2">
-											<button class="btn btn-primary" type="button" onclick="adicionar_cliente()">ADICIONAR</button>
-										</div>
-									</form>
+				  	<div class="card">
+					  <div class="card-body">
+					  	<div id="conteudo_elementos">
+					  		<div id="guia_aplicacao" style="width:1030px; height: 100%;">
+					  			<img src="img/guia_aplicacao.gif" style="width:100%;height:90%;position:realative">
+					  		</div>
+					  		<div id="adicionar_cliente" style="display:none;">
+					  			<div id="retornar_msg" style="display:none;text-align: center;justify-content: center;">
+									<p id="texto"></p>
 								</div>
-								<div id="adicionar_comida" style="display:none;">
-									<div id="retornar_msg" style="display:none;text-align: center;justify-content: center;">
-										<p id="texto"></p>
-									</div>
-									<form>
-										<div class="mb-3">
-											<label for="nome_comida" class="form-label">Comida</label>
-											<input type="text" class="form-control" id="nome_comida" placeholder="nome da comida...">
-										</div>
-										<div class="mb-3">
-											<label for="preço_comida" class="form-label">Preço da comida</label>
-											<input type="text" class="form-control" id="preço_comida"placeholder="Preço da comida...">
-										</div>
-										<div class="d-grid gap-2">
-											<button class="btn btn-primary" type="button" onclick="adicionar_comida()">ADICIONAR</button>
-										</div>
-									</form>
-								</div>
-								<div id="dividir_conta" style="display:none">
-									<div id="guia_dividir_conta">
-										<p class="alert alert-warning">Antes de dividir a conta,insira os cliente e as os pedidos dos mesmos!</p>
+							    <form>
+									<div class="mb-3">
+										<label for="nome_cliente" class="form-label">Cliente</label>
+										<input type="text" class="form-control" id="nome_cliente" aria-describedby="nome_clienteHelp" placeholder="nome do cliente...">
 									</div>
 									<div class="d-grid gap-2">
-									  <button class="btn btn-primary" type="button" onclick="dividir_conta()">Calcular</button>
+										<button class="btn btn-primary" type="button" onclick="adicionar_cliente()">ADICIONAR</button>
 									</div>
+								</form>
+							</div>
+							<div id="adicionar_comida" style="display:none;">
+								<div id="retornar_msg" style="display:none;text-align: center;justify-content: center;">
+									<p id="texto"></p>
+								</div>
+								<form>
+									<div class="mb-3">
+										<label for="nome_comida" class="form-label">Comida</label>
+										<input type="text" class="form-control" id="nome_comida" placeholder="nome da comida...">
+									</div>
+									<div class="mb-3">
+										<label for="preço_comida" class="form-label">Preço da comida</label>
+										<input type="text" class="form-control" id="preço_comida"placeholder="Preço da comida...">
+									</div>
+									<div class="d-grid gap-2">
+										<button class="btn btn-primary" type="button" onclick="adicionar_comida()">ADICIONAR</button>
+									</div>
+								</form>
+							</div>
+							<div id="dividir_conta" style="display:none">
+								<div id="guia_dividir_conta">
+									<p class="alert alert-warning">Antes de dividir a conta,insira os cliente e as os pedidos dos mesmos!</p>
+								</div>
+								<div class="d-grid gap-2">
+								  <button class="btn btn-primary" type="button" onclick="dividir_conta()">Calcular</button>
 								</div>
 							</div>
-						  </div>
 						</div>
+					  </div>
 					</div>
 				</div>
 			</div>
