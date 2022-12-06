@@ -29,7 +29,7 @@ marcar_guia_selecionada = (elemento) =>{
 	}
 };
 limpar_campos = (div_formulario) => {
-	let div = document.querySelectorAll(`#${div_formulario} input[type='text']`);
+	let div = document.querySelectorAll(`#${div_formulario} input[type='text'],input[type='number']`);
 	for(campos of div){
 		campos.value = "";
 	}
@@ -92,13 +92,17 @@ function adicionar_cliente(){
 }
 function adicionar_comida(){
 	let nome_comida = document.getElementById("nome_comida");
-	let preco_comida = document.getElementById("preço_comida");
+	var preco_comida = document.getElementById("preço_comida");
 	if(nome_comida.value!="" && preco_comida.value!=""){
-		comida['nome'].push(nome_comida.value);
-		comida['preco'].push(preco_comida.value);
-		nome_comida.value = "";
-		preco_comida.value = "";
-		retornar_msg_usuario("adicionar_comida","Comida adicionada à conta com sucesso!","success",1700);
+		if(preco_comida.type === 'number'){
+			comida['nome'].push(nome_comida.value);
+			comida['preco'].push(preco_comida.value);
+			nome_comida.value = "";
+			preco_comida.value = "";
+			retornar_msg_usuario("adicionar_comida","Comida adicionada à conta com sucesso!","success",2000);
+		}else{
+			retornar_msg_usuario("adicionar_comida","O campo Preço da comida, tem que ser númerico!","danger",2500);
+		}
 	}else{
 		if (nome_comida.value == "" && preco_comida.value!="") {
 			retornar_msg_usuario("adicionar_comida","Campo Comida vázio. Preencha o campo comida!","warning",2500);
@@ -111,22 +115,30 @@ function adicionar_comida(){
 }
 function montar_formulario(div_conteudo_elementos){
 	const div_conteudo_conta = document.createElement("div");
+	var tamanho_width_div = document.querySelector("#conteudo").offsetWidth;
+	var tamanho_px_cada = Math.round((tamanho_width_div/(cliente.length+1)));
+	// alert(tamanho_px_cada);
 	div_conteudo_conta.id = "div_conta_formulario";
 	for(var i = 0; i < comida.nome.length; i++){
 		// console.log(comida.nome[i])
 		let comida_nome_formatado = comida.nome[i]+" "+comida.preco[i]+"(R$):";
 		let criar_label = document.createElement("label");
+		let criar_hr = document.createElement("hr");
 		let texto_label = document.createTextNode(comida_nome_formatado);
 		criar_label.id = "comida_nome";
 		let criar_quebra_linha = document.createElement("br")
 		criar_label.setAttribute("for","label");
 		criar_label.appendChild(texto_label);	
+		criar_label.style.width = `auto`;
 		div_conteudo_conta.appendChild(criar_label);
+		// div_conteudo_conta.appendChild(criar_quebra_linha);
 		for(cliente_nome of cliente){
 			let nome_cliente = cliente_nome;
 			let criar_checkbox_nome_cliente = document.createElement("input");
 			let criar_label_cliente = document.createElement("label");
 			let criar_texto_label_cliente = document.createTextNode(cliente_nome);
+			let tamanho_width_label_cliente = cliente_nome.length*9;
+			criar_label_cliente.style.width = `${tamanho_px_cada}px`;
 			criar_label_cliente.id = "label_nome_cliente";
 			criar_checkbox_nome_cliente.type = "checkbox";
 			criar_checkbox_nome_cliente.name = cliente_nome;
@@ -135,6 +147,7 @@ function montar_formulario(div_conteudo_elementos){
 	       	criar_label_cliente.appendChild(criar_texto_label_cliente);
 			div_conteudo_conta.appendChild(criar_checkbox_nome_cliente);
 			div_conteudo_conta.appendChild(criar_label_cliente);
+			div_conteudo_conta.appendChild(criar_hr);
 		}
 		div_conteudo_conta.appendChild(criar_quebra_linha);
 		div_conteudo_elementos.prepend(div_conteudo_conta);
@@ -159,20 +172,19 @@ function montar_conta_formulario(){
 	atualizar_element_conta();
 	montar_formulario(div_conteudo_elementos);
 }
-function mostrar_conta_dividida_div(resultado,cliente){
-	const div_conta = document.querySelector("#conteudo_elementos #dividir_conta");
-	let div_label_conta = document.createElement("div");
-	div_label_conta.id = "div_label_conta";
+function mostrar_conta_dividida_div(resultado,cliente,tamanho_px_label){
+	var div_conta = document.querySelector("#conteudo_elementos #dividir_conta");	
+	// let div_label_conta = document.createElement("div");
+	// div_label_conta.id = "div_label_conta";
 	let label_cliente_resultado = document.createElement("label");
 	label_cliente_resultado.id = "label_cliente_resultado";
 	let valor_label_cliente_resultado = document.createTextNode(cliente+": "+resultado+"R$");
 	label_cliente_resultado.appendChild(valor_label_cliente_resultado);
-	// label_cliente_resultado.style.width = "20%";
-	// label_cliente_resultado.style.marginRight = "10px";
-	// label_cliente_resultado.style.justifyContent = "center";
-	label_cliente_resultado.appendChild(valor_label_cliente_resultado);
-	div_label_conta.appendChild(label_cliente_resultado);
-	div_conta.appendChild(div_label_conta);
+	// div_label_conta.className = "col-sm-2 col-xs-2 col-md-6"
+	label_cliente_resultado.style.width = "auto";
+	label_cliente_resultado.style.marginLeft = "8px";
+	// div_label_conta.appendChild(label_cliente_resultado);
+	div_conta.appendChild(label_cliente_resultado);	
 }
 function dividir_conta(){
 	atualizar_element_conta();
@@ -195,6 +207,8 @@ function dividir_conta(){
 	comida.nome.forEach((element,index) =>{
 		comida.preco_dividido[index] = parseFloat(comida.preco[index]/contar_quantidade_div_comida[element]);
 	});
+	var tamanho_width_div_resultado = document.querySelector("#conteudo").offsetWidth;
+	var tamanho_px_cada_div_resultado = Math.round((tamanho_width_div_resultado/3));
 	cliente.forEach(cliente =>{
 		comida_cliente.cliente.forEach((cliente_comida,index)=>{
 			if(cliente == cliente_comida){
@@ -203,7 +217,7 @@ function dividir_conta(){
 			}
 		});
 		// console.log(cliente+":"+resultado_conta);
-		mostrar_conta_dividida_div(resultado_conta.toFixed(2),cliente);
+		mostrar_conta_dividida_div(resultado_conta.toFixed(2),cliente,tamanho_px_cada_div_resultado);
 		resultado_conta = 0;
 	});
 }

@@ -59,17 +59,17 @@
 									</div>
 									<div class="mb-3">
 										<label for="preço_comida" class="form-label">Preço da comida</label>
-										<input type="text" class="form-control" id="preço_comida"placeholder="Preço da comida...">
+										<input type="number" class="form-control" id="preço_comida"placeholder="Preço da comida...">
 									</div>
 									<div class="d-grid gap-2">
 										<button class="btn btn-primary" type="button" onclick="adicionar_comida()">ADICIONAR</button>
-										<button class="btn btn-warning" type="button" onclick="limpar_campos('adicionar_comida')">LIMPAR CAMPOS</button>
+											<button class="btn btn-warning" type="button" onclick="limpar_campos('adicionar_comida')">LIMPAR CAMPOS</button>
 									</div>
 								</form>
 							</div>
-							<div id="dividir_conta" style="display:none;">
+							<div id="dividir_conta" style="display:none;justify-content: center!important;">
 								<div id="guia_dividir_conta">
-									<p class="alert alert-warning">Antes de dividir a conta,insira os cliente e as os pedidos dos mesmos!</p>
+									<p class="alert alert-warning" style="text-align:center;">Antes de dividir a conta,insira os cliente e as os pedidos dos mesmos!</p>
 								</div>
 								<div class="d-grid gap-2">
 								  <button class="btn btn-primary" type="button" onclick="dividir_conta()">Calcular</button>
