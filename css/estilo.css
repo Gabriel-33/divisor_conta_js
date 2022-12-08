@@ -67,6 +67,7 @@ ul li a:hover{
 }
 #dividir_conta #div_conta_formulario #comida_nome{
 	display: inline-grid;
+	align-items: center;
 	height: 20px;
 	width: 10%;
 }

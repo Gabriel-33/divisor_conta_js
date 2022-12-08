@@ -1,12 +1,17 @@
+const conteudo = document.getElementById("div_conteudo");
 alterar_classe_div_conteudo = (elemento) =>{
 	let pegar_div_conteudo_bootstrap = document.getElementById("div_conteudo");
+	pegar_div_conteudo_bootstrap.className = "col-md-12 col-xs-12 col-sm-12 mx-auto";
+	conteudo.style.maxWidth = "60%";
 	switch(elemento){
 		case 'dividir_conta':
-			pegar_div_conteudo_bootstrap.className = "col-md-12 col-xs-12 col-sm-12 mx-auto";
+			// pegar_div_conteudo_bootstrap.className = "col-md-12 col-xs-12 col-sm-12 mx-auto";
 			montar_conta_formulario();
 			break;
 		case 'guia_aplicacao':
 			pegar_div_conteudo_bootstrap.className = "col-md-10 col-xs-12 col-sm-12 mx-auto";
+			conteudo.style.maxWidth = "100%";
+			conteudo.style.maxHeight = "auto";
 			break;
 		default:
 			pegar_div_conteudo_bootstrap.className = "col-md-8 col-xs-12 col-sm-8 mx-auto";
@@ -51,10 +56,10 @@ function chamar_elemento_pagina(e,elemento){
 	marcar_guia_selecionada(elemento);
 }
 let atualizar_form_conta = 1;
-const cliente = [];
+const cliente = ['gabriel','lucas','pedro','marcos','joão','kayke','marcos','joão','kayke'];
 const comida = {
-	nome:[],
-	preco:[],
+	nome:['pizza','açai'],
+	preco:[22,7.5],
 	preco_dividido:[],
 };
 retornar_msg_usuario = (div,texto,tipoMsg,tempo) => {
@@ -117,8 +122,9 @@ function montar_formulario(div_conteudo_elementos){
 	const div_conteudo_conta = document.createElement("div");
 	var tamanho_width_div = document.querySelector("#conteudo").offsetWidth;
 	var tamanho_px_cada = Math.round((tamanho_width_div/(cliente.length+1)));
-	// alert(tamanho_px_cada);
+	var tamanho_max_div = 0;
 	div_conteudo_conta.id = "div_conta_formulario";
+	// conteudo.className = "col-md-10 col-xs-12 col-sm-8 mx-auto";
 	for(var i = 0; i < comida.nome.length; i++){
 		// console.log(comida.nome[i])
 		let comida_nome_formatado = comida.nome[i]+" "+comida.preco[i]+"(R$):";
@@ -132,13 +138,15 @@ function montar_formulario(div_conteudo_elementos){
 		criar_label.style.width = `auto`;
 		div_conteudo_conta.appendChild(criar_label);
 		// div_conteudo_conta.appendChild(criar_quebra_linha);
+		tamanho_max_div = 0;
 		for(cliente_nome of cliente){
 			let nome_cliente = cliente_nome;
 			let criar_checkbox_nome_cliente = document.createElement("input");
 			let criar_label_cliente = document.createElement("label");
 			let criar_texto_label_cliente = document.createTextNode(cliente_nome);
 			let tamanho_width_label_cliente = cliente_nome.length*9;
-			criar_label_cliente.style.width = `${tamanho_px_cada}px`;
+			tamanho_max_div+=tamanho_width_label_cliente;
+			criar_label_cliente.style.width = `${tamanho_width_label_cliente}px`;
 			criar_label_cliente.id = "label_nome_cliente";
 			criar_checkbox_nome_cliente.type = "checkbox";
 			criar_checkbox_nome_cliente.name = cliente_nome;
@@ -149,7 +157,8 @@ function montar_formulario(div_conteudo_elementos){
 			div_conteudo_conta.appendChild(criar_label_cliente);
 			div_conteudo_conta.appendChild(criar_hr);
 		}
-		div_conteudo_conta.appendChild(criar_quebra_linha);
+		// div_conteudo_conta.appendChild(criar_quebra_linha);
+		conteudo.style.maxWidth = `${tamanho_max_div*2.2}px`;
 		div_conteudo_elementos.prepend(div_conteudo_conta);
 	}
 }
