@@ -231,3 +231,6 @@ function dividir_conta(){
 		resultado_conta = 0;
 	});
 }
+function fechar_sistema(){
+	
+}
